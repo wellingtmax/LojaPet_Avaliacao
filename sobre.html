@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre - Loja PetShop</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="sobre.css" />
+  </head>
+  <body>
+    <!-- Header com Logo -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="img/logo.png" alt="Logo Loja PetShop" />
+          <h1>Loja PetShop</h1>
+        </div>
+        <!-- Menu de Navegação -->
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html" class="active">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+        <!-- Área de Usuário e Carrinho -->
+        <div class="header-actions">
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <img src="img/icon/circle-user-solid.svg" alt="Usuário" />
+              <span>Minha Conta</span>
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="#" class="dropdown-item">Login</a>
+              <a href="#" class="dropdown-item">Cadastrar</a>
+              <a href="#" class="dropdown-item">Meus Pedidos</a>
+            </div>
+          </div>
+          <div class="cart-container">
+            <button class="cart-btn" id="cartBtn">
+              <img src="img/icon/shopping-cart-solid.svg" alt="Carrinho" />
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <div class="cart-dropdown" id="cartDropdown">
+              <div class="cart-header">
+                <h3>Meu Carrinho</h3>
+              </div>
+              <div class="cart-items" id="cartItems">
+                <div class="cart-empty">
+                  <p>Seu carrinho está vazio</p>
+                </div>
+              </div>
+              <div class="cart-footer" id="cartFooter" style="display: none">
+                <div class="cart-total">
+                  <strong>Total: R$ <span id="cartTotal">0,00</span></strong>
+                </div>
+                <div class="cart-actions">
+                  <button class="btn-clear-cart" id="clearCartBtn">
+                    Limpar
+                  </button>
+                  <button class="btn-checkout" id="checkoutBtn">
+                    Finalizar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="sobre-section">
+        <h1 class="sobre-header">🐾 Sobre a Loja PetShop</h1>
+
+        <p>
+          A <strong>Loja PetShop</strong> nasceu do amor incondicional pelos
+          animais e da vontade de fazer a diferença na vida de tutores e seus
+          companheiros de quatro patas.<br />
+          Tudo começou com um pequeno espaço em nossa comunidade, onde
+          acolhíamos animais resgatados e oferecíamos produtos básicos para
+          cuidados diários.
+        </p>
+
+        <p>
+          Com o passar do tempo — e com o carinho dos nossos clientes —
+          crescemos e nos tornamos uma loja online dedicada a oferecer não só
+          produtos, mas também confiança, acolhimento e orientação para quem ama
+          e cuida dos seus pets.
+        </p>
+
+        <p>
+          Nosso compromisso vai além da venda. Valorizamos o bem-estar animal, o
+          respeito à natureza e a construção de laços verdadeiros entre humanos
+          e bichinhos.<br />
+          Trabalhamos com fornecedores que compartilham da mesma ética,
+          selecionamos produtos de qualidade comprovada e buscamos sempre
+          escutar o que você e seu pet precisam.
+        </p>
+
+        <h2>Nossos valores são simples e inegociáveis:</h2>
+        <ul class="valores">
+          <li>🐶 Amor e respeito pelos animais</li>
+          <li>🤝 Transparência e ética no atendimento</li>
+          <li>🚚 Agilidade e cuidado em cada entrega</li>
+          <li>🌱 Sustentabilidade nos processos</li>
+          <li>💬 Apoio constante antes, durante e após sua compra</li>
+        </ul>
+
+        <p>
+          Seja para alimentar, brincar, proteger ou mimar, estamos aqui para
+          ajudar você a cuidar de quem te dá amor todos os dias —<br />
+          sem pedir nada em troca, além de carinho.
+        </p>
+
+        <!-- Carrossel de imagens do time e empresa -->
+        <div class="carrossel-sobre">
+          <a
+            href="https://github.com/ManinhoDev"
+            target="_blank"
+            class="link-slide"
+            ><img
+              src="img/CRISTOVAO.jpg"
+              alt="SGT CRISTÓVÃO"
+              class="slide-sobre ativo"
+          /></a>
+          <a
+            href="https://github.com/wellingtmax"
+            target="_blank"
+            class="link-slide"
+            ><img src="img/JHOTA.jpg" alt="SGT J. OLIVEIRA" class="slide-sobre"
+          /></a>
+          <a
+            href="https://github.com/gabrielfaria87"
+            target="_blank"
+            class="link-slide"
+            ><img src="img/FARIA.jpg" alt="SGT FARIA" class="slide-sobre"
+          /></a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2025 Loja PetShop | Todos os direitos reservados</p>
+      <p>Contato: contato@lojaPetShop.com</p>
+      <div class="redes">
+        <img src="img/icon/facebook-brands.svg" alt="" />
+        <img src="img/icon/instagram-brands.svg" alt="" />
+      </div>
+    </footer>
+    <script>
+      // Carrossel slide para sobre.html
+      const slideLinks = document.querySelectorAll(
+        ".carrossel-sobre .link-slide"
+      );
+      const slides = document.querySelectorAll(".slide-sobre");
+      let slideIdx = 0;
+      let interval = setInterval(nextSlide, 4000);
+
+      function nextSlide() {
+        slides[slideIdx].classList.remove("ativo");
+        slides[slideIdx].classList.add("slide-out-left");
+        slideLinks[slideIdx].style.zIndex = 1;
+        slideIdx = (slideIdx + 1) % slides.length;
+        slides[slideIdx].classList.remove("slide-out-left");
+        slides[slideIdx].classList.add("ativo");
+        slideLinks[slideIdx].style.zIndex = 2;
+      }
+
+      slideLinks.forEach((link, idx) => {
+        link.addEventListener("mouseenter", () => {
+          clearInterval(interval);
+        });
+        link.addEventListener("mouseleave", () => {
+          interval = setInterval(nextSlide, 4000);
+        });
+      });
+    </script>
+  </body>
+</html>

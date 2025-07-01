@@ -1,72 +1,142 @@
 [
   {
     "id": 1,
-    "produto": "Ração Premium para Cães",
-    "preço": 99.90,
-    "detalhe": "Ração completa e balanceada para cães adultos de porte médio, com ingredientes de alta qualidade.",
-    "imagem": "https://example.com/images/racao_cao_premium.jpg"
+    "produto": "Ração Birbo para Cães",
+    "preço": 89.90,
+    "detalhe": "Ração saborosa e nutritiva para cães adultos.",
+    "imagem": "img/racao/racaoBirbo.jpg"
   },
   {
     "id": 2,
-    "produto": "Brinquedo de Borracha para Cães",
-    "preço": 45.50,
-    "detalhe": "Brinquedo durável e resistente, ideal para cães que adoram mastigar. Ajuda na saúde dental.",
-    "imagem": "https://example.com/images/brinquedo_borracha.jpg"
+    "produto": "Ração Dog Plus",
+    "preço": 79.90,
+    "detalhe": "Ração completa para cães de todos os portes.",
+    "imagem": "img/racao/racaoDogPlus.jpg"
   },
   {
     "id": 3,
-    "produto": "Coleira e Guia para Gatos",
-    "preço": 59.90,
-    "detalhe": "Coleira ajustável com guia, confortável e segura para passeios ao ar livre.",
-    "imagem": "https://example.com/images/coleira_guia_gato.jpg"
+    "produto": "Ração Gold para Cães",
+    "preço": 99.90,
+    "detalhe": "Ração premium para cães exigentes.",
+    "imagem": "img/racao/racaoGold.jpg"
   },
   {
     "id": 4,
-    "produto": "Shampoo Hipoalergênico para Pets",
-    "preço": 39.99,
-    "detalhe": "Shampoo suave, ideal para peles sensíveis, deixando o pelo do seu pet macio e cheiroso.",
-    "imagem": "https://example.com/images/shampoo_hipoalergenico.jpg"
+    "produto": "Ração Mix Dog",
+    "preço": 69.90,
+    "detalhe": "Ração econômica para cães adultos.",
+    "imagem": "img/racao/racaoMixDog.jpg"
   },
   {
     "id": 5,
-    "produto": "Cama para Cachorro - Tamanho Grande",
-    "preço": 199.90,
-    "detalhe": "Cama confortável e resistente, ideal para cães de grande porte, com tecido antialérgico.",
-    "imagem": "https://example.com/images/cama_cachorro_grande.jpg"
+    "produto": "Ração Multi para Cães",
+    "preço": 74.90,
+    "detalhe": "Ração balanceada para cães de todos os tamanhos.",
+    "imagem": "img/racao/racaoMulti.jpg"
   },
   {
     "id": 6,
-    "produto": "Ração Premium para Gatos",
-    "preço": 89.90,
-    "detalhe": "Ração balanceada para gatos adultos, com proteínas de alta qualidade e nutrientes essenciais para a saúde.",
-    "imagem": "https://example.com/images/racao_gato_premium.jpg"
+    "produto": "Ração Nutrive para Cães",
+    "preço": 84.90,
+    "detalhe": "Ração com nutrientes essenciais para a saúde do seu cão.",
+    "imagem": "img/racao/racaoNutrive.jpg"
   },
   {
     "id": 7,
-    "produto": "Areia Higiênica para Gatos",
-    "preço": 29.90,
-    "detalhe": "Areia absorvente, com controle de odores, ideal para caixas de areia de gatos.",
-    "imagem": "https://example.com/images/areia_higienica.jpg"
+    "produto": "Ração Origen para Cães",
+    "preço": 109.90,
+    "detalhe": "Ração super premium para cães adultos.",
+    "imagem": "img/racao/racaoOrigen.jpg"
   },
   {
     "id": 8,
-    "produto": "Escova de Cabelo para Pets",
-    "preço": 19.90,
-    "detalhe": "Escova de cerdas macias, ideal para desembaraçar o pelo do seu pet, sem causar desconforto.",
-    "imagem": "https://example.com/images/escova_pets.jpg"
+    "produto": "Ração Premium para Gatos Pacato",
+    "preço": 89.90,
+    "detalhe": "Ração premium para gatos adultos.",
+    "imagem": "img/racao/racaPacato.jpg"
   },
   {
     "id": 9,
-    "produto": "Comedouro e Bebedouro Automático para Cães",
-    "preço": 159.90,
-    "detalhe": "Comedouro e bebedouro com sistema automático, para garantir alimentação e hidratação constante para seu pet.",
-    "imagem": "https://example.com/images/comedouro_automatico.jpg"
+    "produto": "Ração Premium para Gatos Receita",
+    "preço": 92.90,
+    "detalhe": "Ração especial para gatos exigentes.",
+    "imagem": "img/racao/racaoReceita.jpg"
   },
   {
     "id": 10,
+    "produto": "Ração Premium para Gatos",
+    "preço": 99.90,
+    "detalhe": "Ração de alta qualidade para gatos adultos.",
+    "imagem": "img/racao/RacaoPremiumparaGatos.jpg"
+  },
+  {
+    "id": 11,
+    "produto": "Areia Higiênica para Gatos",
+    "preço": 29.90,
+    "detalhe": "Areia absorvente para higiene dos gatos.",
+    "imagem": "img/racao/AreiaHigienicaparaGatos.jpg"
+  },
+  {
+    "id": 12,
+    "produto": "Brinquedo de Borracha para Cães",
+    "preço": 45.50,
+    "detalhe": "Brinquedo resistente para diversão e saúde dental.",
+    "imagem": "img/acessorios/BrinquedodeBorrachaparaCães.jpg"
+  },
+  {
+    "id": 13,
+    "produto": "Cama para Cachorro",
+    "preço": 199.90,
+    "detalhe": "Cama confortável para cães de todos os portes.",
+    "imagem": "img/acessorios/CamaparaCachorro.jpg"
+  },
+  {
+    "id": 14,
     "produto": "Cinto de Segurança para Cães",
     "preço": 69.90,
-    "detalhe": "Cinto de segurança ajustável, para viagens seguras e confortáveis para o seu pet no carro.",
-    "imagem": "https://example.com/images/cinto_seguranca.jpg"
+    "detalhe": "Cinto ajustável para segurança do pet no carro.",
+    "imagem": "img/acessorios/CintodeSegurancaparaCaes.jpg"
+  },
+  {
+    "id": 15,
+    "produto": "Coleira e Guia para Gatos",
+    "preço": 59.90,
+    "detalhe": "Coleira confortável e segura para passeios.",
+    "imagem": "img/acessorios/ColeiraeGuiaparaGatos.jpg"
+  },
+  {
+    "id": 16,
+    "produto": "Comedouro e Bebedouro Automático para Cães",
+    "preço": 159.90,
+    "detalhe": "Comedouro e bebedouro automático para praticidade.",
+    "imagem": "img/acessorios/ComedouroeBebedouroAutomaticoparaCaes.jpg"
+  },
+  {
+    "id": 17,
+    "produto": "Escova de Cabelo para Pets",
+    "preço": 19.90,
+    "detalhe": "Escova macia para cuidados com o pelo do pet.",
+    "imagem": "img/acessorios/EscovadeCabeloparaPets.jpg"
+  },
+  {
+    "id": 18,
+    "produto": "Pote de Ração",
+    "preço": 24.90,
+    "detalhe": "Pote resistente para armazenar ração.",
+    "imagem": "img/acessorios/poteRacao.jpg"
+  },
+  {
+    "id": 19,
+    "produto": "Pote Rosa para Ração",
+    "preço": 26.90,
+    "detalhe": "Pote rosa para ração ou água do pet.",
+    "imagem": "img/acessorios/poteRosa.jpg"
+  },
+  {
+    "id": 20,
+    "produto": "Shampoo para Pets",
+    "preço": 39.99,
+    "detalhe": "Shampoo suave para higiene dos pets.",
+    "imagem": "img/produtos de limpezas/shampo.jpg"
   }
 ]
