@@ -1,15 +1,13 @@
-<<<<<<< HEAD
-/* Reset básico */
-=======
-/* Resetando alguns estilos padrões */
->>>>>>> f2a38921649604e299be1d30e8559d74e9a7d0b6
+
+
 * {
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
+
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #fffaf4;
@@ -22,7 +20,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #f7f9fb;
+
   padding: 16px 40px;
   box-shadow: 0 2px 8px #0001;
 }
@@ -323,7 +321,7 @@ footer {
     padding: 16px 10px;
   }
 }
-=======
+
 /* Corpo do site */
 body {
   font-family: "Arial", sans-serif;
@@ -769,7 +767,8 @@ form button:hover {
     135deg,
     #e85a2b 0%,
     #e08516 100%
-  ); /* Gradiente laranja mais escuro */
+  ); 
+  /* Gradiente laranja mais escuro */
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
 }
@@ -1143,7 +1142,7 @@ form button:hover {
   transition: transform 0.7s, opacity 0.7s;
 }
 
-<<<<<<< HEAD
+
 /* ======================
    SIDEBAR MENU - REFATORADO
    ====================== */
@@ -1414,7 +1413,7 @@ form button:hover {
 
 /* Carrossel */
 
-=======
+
 /* Responsividade para dispositivos móveis */
 @media screen and (max-width: 768px) {
   /* Header responsivo */
@@ -1567,5 +1566,4 @@ form button:hover {
   display: flex;
   gap: 15px;
 }
->>>>>>> f2a38921649604e299be1d30e8559d74e9a7d0b6
->>>>>>> 14e89b75c1d11ce8bd09d8bdf884904ca77c93ee
+

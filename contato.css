@@ -1,0 +1,247 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fffaf4;
+  color: #333;
+  min-height: 100vh;
+}
+
+
+/* Navbar */
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 40px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+.logo {
+  height: 60px;
+}
+
+#nav_list {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #2d5c8a;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: #eaf6ff;
+  color: #ff9800;
+}
+
+.login-link {
+  background-color: white;
+  color: #FF6B35;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.login-link:hover {
+  background-color: #FFD166;
+  color: #073B4C;
+}
+
+/* Título da página */
+.page-title {
+  background: #FFD166;
+  color: #073B4C;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.page-title h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-title h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.page-title p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* Layout principal */
+#main_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Seções */
+#contatos_container,
+#contact_form_container {
+  flex: 1 1 45%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Cartões de contato */
+#cards_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-left: 6px solid #FF6B35;
+  border-radius: 10px;
+  transition: 0.3s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-card:hover {
+  transform: translateX(5px);
+  background-color: #fff1e6;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  color: #FF6B35;
+  margin-right: 1rem;
+}
+
+.card-infos span {
+  display: block;
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+/* Redes sociais */
+#social_media_incon {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.incon-link {
+  font-size: 1.5rem;
+  color: #073B4C;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.incon-link:hover {
+  transform: scale(1.2);
+  color: #FF6B35;
+}
+
+/* Formulário */
+#contact_form_container h3 {
+  margin-bottom: 1rem;
+}
+
+.input.group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.input.group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.input.group input,
+.input.group textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.input.group textarea {
+  resize: vertical;
+}
+
+button[type="submit"] {
+  background-color: #FF6B35;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #e85d20;
+}
+
+/* Footer */
+footer {
+  background-color: #073B4C;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+#footer_link_content {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.footer-list {
+  list-style: none;
+}
+
+.footer-link {
+  color: #FFD166;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.list-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
