@@ -315,3 +315,58 @@ input[readonly]:focus {
     margin-bottom: 1rem;
   }
 }
+
+/* Footer padrão do site */
+footer {
+  background: linear-gradient(
+    135deg,
+    #2c3e50 0%,
+    #3498db 100%
+  ); /* Gradiente azul escuro */
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: auto;
+  font-size: 16px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+.redes {
+  width: 50px;
+  display: flex;
+  gap: 15px;
+}
+
+.redes img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1); /* Torna os ícones brancos */
+  transition: opacity 0.3s ease;
+}
+
+.redes img:hover {
+  opacity: 0.7;
+}
+
+/* Responsividade do footer */
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .redes {
+    width: auto;
+    justify-content: center;
+  }
+}
