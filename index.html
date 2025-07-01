@@ -38,7 +38,7 @@
         transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1), opacity 0.7s;
         opacity: 0;
         z-index: 1;
-        box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.07);
       }
       #carrossel img.slide-in {
         transform: translate(-50%, -50%) scale(1);
@@ -81,71 +81,27 @@
         <li><a href="contato.html">Contato</a></li>
       </ul>
     </nav>
-
-    <!-- Carrossel de Imagens -->
-    <div id="carrossel">
-      <img src="img/racao/racaoBirbo.jpg" alt="Produto 1" />
-      <img src="img/racao/racaoDogPlus.jpg" alt="Produto 2" />
-      <img src="img/racao/racaoGold.jpg" alt="Produto 3" />
-      <img src="img/racao/racaoMixDog.jpg" alt="Produto 4" />
-      <img src="img/racao/racaoMulti.jpg" alt="Produto 5" />
-      <img src="img/racao/racaoNutrive.jpg" alt="Produto 6" />
-      <img src="img/racao/racaoOrigen.jpg" alt="Produto 7" />
-      <button
-        id="carrossel-prev"
-        aria-label="Anterior"
-        style="
-          position: absolute;
-          left: 10px;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 3;
-          background: #fff;
-          border: none;
-          border-radius: 50%;
-          width: 32px;
-          height: 32px;
-          box-shadow: 0 1px 4px #0002;
-          cursor: pointer;
-          font-size: 20px;
-        "
-      >
-        &#8592;
-      </button>
-      <button
-        id="carrossel-next"
-        aria-label="Próximo"
-        style="
-          position: absolute;
-          right: 10px;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 3;
-          background: #fff;
-          border: none;
-          border-radius: 50%;
-          width: 32px;
-          height: 32px;
-          box-shadow: 0 1px 4px #0002;
-          cursor: pointer;
-          font-size: 20px;
-        "
-      >
-        &#8594;
-      </button>
-      <div
-        id="carrossel-dots"
-        style="
-          position: absolute;
-          bottom: 18px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 10px;
-          z-index: 4;
-        "
-      ></div>
+    <div class="main-content" id="home">
+      <!-- Carrossel de Imagens -->
+      <div id="carrossel">
+        <img src="img/racao/racaoBirbo.jpg" alt="Produto 1" />
+        <img src="img/racao/racaoDogPlus.jpg" alt="Produto 2" />
+        <img src="img/racao/racaoGold.jpg" alt="Produto 3" />
+        <img src="img/racao/racaoMixDog.jpg" alt="Produto 4" />
+        <img src="img/racao/racaoMulti.jpg" alt="Produto 5" />
+        <img src="img/racao/racaoNutrive.jpg" alt="Produto 6" />
+        <img src="img/racao/racaoOrigen.jpg" alt="Produto 7" />
+        <button id="carrossel-prev" aria-label="Anterior">&#8592;</button>
+        <button id="carrossel-next" aria-label="Próximo">&#8594;</button>
+        <div id="carrossel-dots"></div>
+      </div>
+      <!-- Seção Central com Listagem de Produtos -->
+      <section id="produtos">
+        <!-- Aqui os produtos serão listados dinamicamente com JS -->
+      </section>
     </div>
+    <div class="main-content" id="sobre" style="display:none;"></div>
+    <div class="main-content" id="contato" style="display:none;"></div>
 
     <!-- Seção Central com Listagem de Produtos -->
     <section id="produtos">
@@ -164,5 +120,27 @@
     </footer>
 
     <script src="produtos.js"></script>
+    <script>
+      // Ativação de abas do menu
+      document.querySelectorAll("nav ul li a").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (href === "index.html" || href === "#") return;
+          e.preventDefault();
+          document
+            .querySelectorAll(".main-content")
+            .forEach((div) => (div.style.display = "none"));
+          if (href === "sobre.html") {
+            document.getElementById("sobre").style.display = "block";
+            document.getElementById("sobre").innerHTML =
+              "<h1>Sobre a Loja PetShop</h1><p>Bem-vindo à nossa loja! Somos apaixonados por pets e oferecemos os melhores produtos para o seu animal de estimação.</p>";
+          } else if (href === "contato.html") {
+            document.getElementById("contato").style.display = "block";
+            document.getElementById("contato").innerHTML =
+              "<h1>Contato</h1><p>Entre em contato conosco pelo e-mail: contato@lojaPetShop.com</p>";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
