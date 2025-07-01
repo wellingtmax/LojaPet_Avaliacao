@@ -156,7 +156,7 @@
       );
       const slides = document.querySelectorAll(".slide-sobre");
       let slideIdx = 0;
-      let interval = setInterval(nextSlide, 4000);
+      let interval = setInterval(nextSlide, 2000);
 
       function nextSlide() {
         slides[slideIdx].classList.remove("ativo");
@@ -173,7 +173,7 @@
           clearInterval(interval);
         });
         link.addEventListener("mouseleave", () => {
-          interval = setInterval(nextSlide, 4000);
+          interval = setInterval(nextSlide, 2000);
         });
       });
     </script>
