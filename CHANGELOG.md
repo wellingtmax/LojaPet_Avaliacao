@@ -1,5 +1,32 @@
 # 📋 CHANGELOG - LojaPet Sidebar
 
+## [v1.0.1] - 2025-07-01
+
+### 🔧 **CORREÇÕES: Carrossel Página Sobre**
+
+#### ✅ **Corrigido:**
+- **Velocidade do carrossel** - Reduzida de 2s para 4s para melhor visualização
+- **Exibição de nomes** - Nomes das fotos agora são exibidos corretamente
+- **Overlay de nomes** - Tooltips com gradiente para melhor legibilidade  
+- **Display permanente** - Nome da pessoa ativa sempre visível abaixo do carrossel
+- **Transições suaves** - Animações mais fluidas (1s ao invés de 0.7s)
+- **Responsividade** - Ajustes para telas móveis e tablets
+- **Interatividade** - Hover mostra nome da pessoa instantaneamente
+
+#### 🎨 **Melhorias Visuais:**
+- **Container centralizado** com layout em coluna
+- **Typography melhorada** - Nomes em uppercase com letter-spacing
+- **Cores consistentes** - Uso da paleta principal (#4b8e8d)
+- **Acessibilidade** - Tooltips informativos e atributos data-*
+- **Links GitHub** - Mantidos funcionais com títulos descritivos
+
+#### 📱 **Responsivo:**
+- **Desktop**: 220px círculo, fonte 16px
+- **Tablet** (≤768px): 180px círculo, fonte 14px  
+- **Mobile** (≤480px): 150px círculo, fonte 13px
+
+---
+
 ## [v1.0.0] - 2025-07-01
 
 ### ✨ **NOVO RECURSO: Menu Lateral Responsivo**

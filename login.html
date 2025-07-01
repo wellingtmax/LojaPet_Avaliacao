@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Loja PetShop</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .login-container {
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 40px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 107, 53, 0.1);
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .login-header h1 {
+        color: #2d5c8a;
+        font-size: 2rem;
+        margin-bottom: 8px;
+      }
+
+      .login-header p {
+        color: #666;
+        font-size: 1rem;
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-group label {
+        color: #2d5c8a;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .form-group input {
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #ff6b35;
+        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+      }
+
+      .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+      }
+
+      .remember-me {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .remember-me input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        accent-color: #ff6b35;
+      }
+
+      .forgot-password {
+        color: #ff6b35;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .forgot-password:hover {
+        text-decoration: underline;
+      }
+
+      .login-btn {
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+      }
+
+      .login-btn:hover {
+        background: linear-gradient(135deg, #e85a2b 0%, #e08516 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      }
+
+      .login-btn:active {
+        transform: translateY(0);
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .divider::before,
+      .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e0e0e0;
+      }
+
+      .divider span {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .signup-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .signup-link a {
+        color: #ff6b35;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .signup-link a:hover {
+        text-decoration: underline;
+      }
+
+      .social-login {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fff;
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .social-btn:hover {
+        border-color: #ff6b35;
+        background: rgba(255, 107, 53, 0.05);
+      }
+
+      .pet-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header com Logo -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="img/logo.png" alt="Logo Loja PetShop" />
+          <h1>Loja PetShop</h1>
+        </div>
+        <!-- Menu de Navegação -->
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+        <!-- Área de Usuário e Carrinho -->
+        <div class="header-actions">
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <img src="img/icon/circle-user-solid.svg" alt="Usuário" />
+              <span>Minha Conta</span>
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="login.html" class="dropdown-item">Login</a>
+              <a href="cadastro.html" class="dropdown-item">Cadastrar</a>
+              <a href="meus-pedidos.html" class="dropdown-item">Meus Pedidos</a>
+            </div>
+          </div>
+          <div class="cart-container">
+            <button class="cart-btn" id="cartBtn">
+              <img src="img/icon/shopping-cart-solid.svg" alt="Carrinho" />
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="main-layout">
+      <!-- Container do conteúdo principal -->
+      <main class="main-content">
+        <div class="login-container">
+          <div class="login-header">
+            <div class="pet-icon">🐾</div>
+            <h1>Bem-vindo de volta!</h1>
+            <p>Entre em sua conta para continuar suas compras</p>
+          </div>
+
+          <form class="login-form" id="loginForm">
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input type="password" id="password" name="password" required placeholder="Digite sua senha">
+            </div>
+
+            <div class="form-options">
+              <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Lembrar de mim</label>
+              </div>
+              <a href="#" class="forgot-password">Esqueci minha senha</a>
+            </div>
+
+            <button type="submit" class="login-btn">Entrar</button>
+          </form>
+
+          <div class="divider">
+            <span>ou</span>
+          </div>
+
+          <div class="social-login">
+            <a href="#" class="social-btn">
+              <span>📧</span>
+              Continuar com Google
+            </a>
+            <a href="#" class="social-btn">
+              <span>📘</span>
+              Continuar com Facebook
+            </a>
+          </div>
+
+          <div class="signup-link">
+            <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2025 Loja PetShop | Todos os direitos reservados</p>
+      <p>Contato: contato@lojaPetShop.com</p>
+      <div class="redes">
+        <img src="img/icon/facebook-brands.svg" alt="" />
+        <img src="img/icon/instagram-brands.svg" alt="" />
+      </div>
+    </footer>
+
+    <script src="produtos.js"></script>
+    <script>
+      // Simulação de login
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        if (email && password) {
+          // Simular login bem-sucedido
+          localStorage.setItem('userLoggedIn', 'true');
+          localStorage.setItem('userEmail', email);
+          
+          alert('Login realizado com sucesso!');
+          window.location.href = 'index.html';
+        } else {
+          alert('Por favor, preencha todos os campos!');
+        }
+      });
+
+      // Verificar se usuário já está logado
+      if (localStorage.getItem('userLoggedIn') === 'true') {
+        const userEmail = localStorage.getItem('userEmail');
+        if (confirm(`Você já está logado como ${userEmail}. Deseja continuar?`)) {
+          window.location.href = 'index.html';
+        }
+      }
+    </script>
+  </body>
+</html>

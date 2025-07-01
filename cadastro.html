@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro - Loja PetShop</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .signup-container {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 40px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 107, 53, 0.1);
+      }
+
+      .signup-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .signup-header h1 {
+        color: #2d5c8a;
+        font-size: 2rem;
+        margin-bottom: 8px;
+      }
+
+      .signup-header p {
+        color: #666;
+        font-size: 1rem;
+      }
+
+      .signup-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 15px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+      }
+
+      .form-group.full-width {
+        flex: none;
+      }
+
+      .form-group label {
+        color: #2d5c8a;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .form-group input,
+      .form-group select {
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #ff6b35;
+        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+      }
+
+      .form-group select {
+        cursor: pointer;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin: 15px 0;
+      }
+
+      .checkbox-group input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #ff6b35;
+        margin-top: 2px;
+      }
+
+      .checkbox-group label {
+        font-size: 14px;
+        line-height: 1.4;
+        color: #555;
+      }
+
+      .checkbox-group a {
+        color: #ff6b35;
+        text-decoration: none;
+      }
+
+      .checkbox-group a:hover {
+        text-decoration: underline;
+      }
+
+      .signup-btn {
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        margin-top: 10px;
+      }
+
+      .signup-btn:hover {
+        background: linear-gradient(135deg, #e85a2b 0%, #e08516 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      }
+
+      .signup-btn:active {
+        transform: translateY(0);
+      }
+
+      .signup-btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .divider::before,
+      .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e0e0e0;
+      }
+
+      .divider span {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .login-link a {
+        color: #ff6b35;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      .pet-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .password-strength {
+        font-size: 12px;
+        margin-top: 5px;
+        padding: 8px;
+        border-radius: 4px;
+        display: none;
+      }
+
+      .password-strength.weak {
+        background: #fff5f5;
+        color: #c53030;
+        border: 1px solid #fed7d7;
+        display: block;
+      }
+
+      .password-strength.medium {
+        background: #fffbeb;
+        color: #d69e2e;
+        border: 1px solid #feebc8;
+        display: block;
+      }
+
+      .password-strength.strong {
+        background: #f0fff4;
+        color: #38a169;
+        border: 1px solid #c6f6d5;
+        display: block;
+      }
+
+      @media (max-width: 480px) {
+        .form-row {
+          flex-direction: column;
+          gap: 20px;
+        }
+        
+        .signup-container {
+          margin: 20px;
+          padding: 30px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header com Logo -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="img/logo.png" alt="Logo Loja PetShop" />
+          <h1>Loja PetShop</h1>
+        </div>
+        <!-- Menu de Navegação -->
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+        <!-- Área de Usuário e Carrinho -->
+        <div class="header-actions">
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <img src="img/icon/circle-user-solid.svg" alt="Usuário" />
+              <span>Minha Conta</span>
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="login.html" class="dropdown-item">Login</a>
+              <a href="cadastro.html" class="dropdown-item">Cadastrar</a>
+              <a href="meus-pedidos.html" class="dropdown-item">Meus Pedidos</a>
+            </div>
+          </div>
+          <div class="cart-container">
+            <button class="cart-btn" id="cartBtn">
+              <img src="img/icon/shopping-cart-solid.svg" alt="Carrinho" />
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="main-layout">
+      <!-- Container do conteúdo principal -->
+      <main class="main-content">
+        <div class="signup-container">
+          <div class="signup-header">
+            <div class="pet-icon">🐾</div>
+            <h1>Criar conta</h1>
+            <p>Junte-se à nossa comunidade pet e aproveite ofertas exclusivas!</p>
+          </div>
+
+          <form class="signup-form" id="signupForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">Nome</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Seu nome">
+              </div>
+              <div class="form-group">
+                <label for="lastName">Sobrenome</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Seu sobrenome">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" name="phone" required placeholder="(11) 99999-9999">
+              </div>
+              <div class="form-group">
+                <label for="birthDate">Data de Nascimento</label>
+                <input type="date" id="birthDate" name="birthDate" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="petType">Tipo de Pet</label>
+              <select id="petType" name="petType" required>
+                <option value="">Selecione o tipo do seu pet</option>
+                <option value="cachorro">🐕 Cachorro</option>
+                <option value="gato">🐱 Gato</option>
+                <option value="passaro">🐦 Pássaro</option>
+                <option value="peixe">🐠 Peixe</option>
+                <option value="hamster">🐹 Hamster</option>
+                <option value="coelho">🐰 Coelho</option>
+                <option value="outros">🐾 Outros</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input type="password" id="password" name="password" required placeholder="Mínimo 8 caracteres">
+              <div class="password-strength" id="passwordStrength"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirmar Senha</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Digite a senha novamente">
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms" name="terms" required>
+              <label for="terms">
+                Eu aceito os <a href="#" target="_blank">Termos de Uso</a> 
+                e a <a href="#" target="_blank">Política de Privacidade</a>
+              </label>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="newsletter" name="newsletter">
+              <label for="newsletter">
+                Quero receber ofertas e novidades por e-mail
+              </label>
+            </div>
+
+            <button type="submit" class="signup-btn" id="submitBtn" disabled>Criar conta</button>
+          </form>
+
+          <div class="divider">
+            <span>ou</span>
+          </div>
+
+          <div class="login-link">
+            <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2025 Loja PetShop | Todos os direitos reservados</p>
+      <p>Contato: contato@lojaPetShop.com</p>
+      <div class="redes">
+        <img src="img/icon/facebook-brands.svg" alt="" />
+        <img src="img/icon/instagram-brands.svg" alt="" />
+      </div>
+    </footer>
+
+    <script src="produtos.js"></script>
+    <script>
+      // Verificação de força da senha
+      function checkPasswordStrength(password) {
+        const strength = document.getElementById('passwordStrength');
+        let score = 0;
+        let feedback = [];
+
+        if (password.length >= 8) score += 1;
+        else feedback.push('Mínimo 8 caracteres');
+
+        if (/[A-Z]/.test(password)) score += 1;
+        else feedback.push('Uma letra maiúscula');
+
+        if (/[a-z]/.test(password)) score += 1;
+        else feedback.push('Uma letra minúscula');
+
+        if (/[0-9]/.test(password)) score += 1;
+        else feedback.push('Um número');
+
+        if (/[^A-Za-z0-9]/.test(password)) score += 1;
+        else feedback.push('Um caractere especial');
+
+        if (password.length === 0) {
+          strength.style.display = 'none';
+          return;
+        }
+
+        if (score < 3) {
+          strength.className = 'password-strength weak';
+          strength.textContent = 'Senha fraca. Adicione: ' + feedback.join(', ');
+        } else if (score < 5) {
+          strength.className = 'password-strength medium';
+          strength.textContent = 'Senha média. Adicione: ' + feedback.join(', ');
+        } else {
+          strength.className = 'password-strength strong';
+          strength.textContent = 'Senha forte!';
+        }
+      }
+
+      // Verificar se todos os campos obrigatórios estão preenchidos
+      function validateForm() {
+        const form = document.getElementById('signupForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const terms = document.getElementById('terms').checked;
+
+        const requiredFields = form.querySelectorAll('input[required], select[required]');
+        let allFilled = true;
+
+        requiredFields.forEach(field => {
+          if (!field.value.trim()) {
+            allFilled = false;
+          }
+        });
+
+        const passwordsMatch = password === confirmPassword && password.length >= 8;
+        
+        submitBtn.disabled = !(allFilled && passwordsMatch && terms);
+      }
+
+      // Máscara para telefone
+      function formatPhone(input) {
+        let value = input.value.replace(/\D/g, '');
+        value = value.replace(/(\d{2})(\d)/, '($1) $2');
+        value = value.replace(/(\d{5})(\d)/, '$1-$2');
+        input.value = value;
+      }
+
+      // Event listeners
+      document.getElementById('password').addEventListener('input', function() {
+        checkPasswordStrength(this.value);
+        validateForm();
+      });
+
+      document.getElementById('confirmPassword').addEventListener('input', function() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = this.value;
+        
+        if (confirmPassword && password !== confirmPassword) {
+          this.setCustomValidity('As senhas não coincidem');
+        } else {
+          this.setCustomValidity('');
+        }
+        validateForm();
+      });
+
+      document.getElementById('phone').addEventListener('input', function() {
+        formatPhone(this);
+        validateForm();
+      });
+
+      // Validação em tempo real
+      document.querySelectorAll('input, select').forEach(field => {
+        field.addEventListener('input', validateForm);
+        field.addEventListener('change', validateForm);
+      });
+
+      // Submissão do formulário
+      document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const userData = Object.fromEntries(formData.entries());
+        
+        // Simular cadastro bem-sucedido
+        localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('userEmail', userData.email);
+        localStorage.setItem('userName', userData.firstName + ' ' + userData.lastName);
+        
+        alert('Cadastro realizado com sucesso! Bem-vindo à Loja PetShop!');
+        window.location.href = 'index.html';
+      });
+    </script>
+  </body>
+</html>

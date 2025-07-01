@@ -114,28 +114,44 @@
         </p>
 
         <!-- Carrossel de imagens do time e empresa -->
-        <div class="carrossel-sobre">
-          <a
-            href="https://github.com/ManinhoDev"
-            target="_blank"
-            class="link-slide"
-            ><img
-              src="img/CRISTOVAO.jpg"
-              alt="SGT CRISTÓVÃO"
-              class="slide-sobre ativo"
-          /></a>
-          <a
-            href="https://github.com/wellingtmax"
-            target="_blank"
-            class="link-slide"
-            ><img src="img/JHOTA.jpg" alt="SGT J. OLIVEIRA" class="slide-sobre"
-          /></a>
-          <a
-            href="https://github.com/gabrielfaria87"
-            target="_blank"
-            class="link-slide"
-            ><img src="img/FARIA.jpg" alt="SGT FARIA" class="slide-sobre"
-          /></a>
+        <div class="carrossel-container">
+          <div class="carrossel-sobre">
+            <a
+              href="https://github.com/ManinhoDev"
+              target="_blank"
+              class="link-slide"
+              title="SGT CRISTÓVÃO - Desenvolvedor"
+              data-nome="SGT CRISTÓVÃO"
+              >
+              <img
+                src="img/CRISTOVAO.jpg"
+                alt="SGT CRISTÓVÃO"
+                class="slide-sobre ativo"
+              />
+              <div class="nome-overlay">SGT CRISTÓVÃO</div>
+            </a>
+            <a
+              href="https://github.com/wellingtmax"
+              target="_blank"
+              class="link-slide"
+              title="SGT J. OLIVEIRA - Desenvolvedor"
+              data-nome="SGT J. OLIVEIRA"
+              >
+              <img src="img/JHOTA.jpg" alt="SGT J. OLIVEIRA" class="slide-sobre" />
+              <div class="nome-overlay">SGT J. OLIVEIRA</div>
+            </a>
+            <a
+              href="https://github.com/gabrielfaria87"
+              target="_blank"
+              class="link-slide"
+              title="SGT FARIA - Desenvolvedor"
+              data-nome="SGT FARIA"
+              >
+              <img src="img/FARIA.jpg" alt="SGT FARIA" class="slide-sobre" />
+              <div class="nome-overlay">SGT FARIA</div>
+            </a>
+          </div>
+          <div class="nome-display" id="nomeDisplay">SGT CRISTÓVÃO</div>
         </div>
       </section>
     </main>
@@ -155,27 +171,57 @@
         ".carrossel-sobre .link-slide"
       );
       const slides = document.querySelectorAll(".slide-sobre");
+      const nomeDisplay = document.getElementById("nomeDisplay");
       let slideIdx = 0;
-      let interval = setInterval(nextSlide, 2000);
+      let interval = setInterval(nextSlide, 4000); // Aumentado de 2000ms para 4000ms
 
       function nextSlide() {
+        // Remove classes do slide atual
         slides[slideIdx].classList.remove("ativo");
         slides[slideIdx].classList.add("slide-out-left");
         slideLinks[slideIdx].style.zIndex = 1;
+        slideLinks[slideIdx].classList.remove("ativo");
+        
+        // Avança para o próximo slide
         slideIdx = (slideIdx + 1) % slides.length;
+        
+        // Adiciona classes do novo slide
         slides[slideIdx].classList.remove("slide-out-left");
         slides[slideIdx].classList.add("ativo");
         slideLinks[slideIdx].style.zIndex = 2;
+        slideLinks[slideIdx].classList.add("ativo");
+        
+        // Atualiza o nome exibido
+        if (nomeDisplay && slideLinks[slideIdx]) {
+          nomeDisplay.textContent = slideLinks[slideIdx].getAttribute("data-nome");
+        }
       }
 
       slideLinks.forEach((link, idx) => {
         link.addEventListener("mouseenter", () => {
           clearInterval(interval);
+          // Mostra o nome da pessoa ao passar o mouse
+          if (nomeDisplay) {
+            nomeDisplay.textContent = link.getAttribute("data-nome");
+          }
         });
+        
         link.addEventListener("mouseleave", () => {
-          interval = setInterval(nextSlide, 2000);
+          interval = setInterval(nextSlide, 4000);
+          // Restaura o nome do slide ativo atual
+          if (nomeDisplay && slideLinks[slideIdx]) {
+            nomeDisplay.textContent = slideLinks[slideIdx].getAttribute("data-nome");
+          }
         });
       });
+
+      // Inicializar o primeiro slide como ativo
+      if (slideLinks.length > 0) {
+        slideLinks[0].classList.add("ativo");
+        if (nomeDisplay) {
+          nomeDisplay.textContent = slideLinks[0].getAttribute("data-nome");
+        }
+      }
     </script>
   </body>
 </html>

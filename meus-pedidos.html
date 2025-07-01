@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meus Pedidos - Loja PetShop</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .orders-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      .orders-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 30px;
+        background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(247, 147, 30, 0.05) 100%);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 107, 53, 0.1);
+      }
+
+      .orders-header h1 {
+        color: #2d5c8a;
+        font-size: 2.2rem;
+        margin-bottom: 8px;
+      }
+
+      .orders-header p {
+        color: #666;
+        font-size: 1.1rem;
+      }
+
+      .user-info {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .user-avatar {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+      }
+
+      .user-details h3 {
+        color: #2d5c8a;
+        margin-bottom: 5px;
+      }
+
+      .user-details p {
+        color: #666;
+        margin: 0;
+      }
+
+      .orders-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        border: 1px solid rgba(255, 107, 53, 0.1);
+      }
+
+      .stat-card .icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .stat-card .number {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #ff6b35;
+        margin-bottom: 5px;
+      }
+
+      .stat-card .label {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .orders-filter {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .filter-btn {
+        padding: 10px 20px;
+        border: 2px solid #e0e0e0;
+        background: #fff;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        border-color: #ff6b35;
+        background: rgba(255, 107, 53, 0.1);
+        color: #ff6b35;
+      }
+
+      .orders-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .order-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border: 1px solid rgba(255, 107, 53, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .order-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .order-header {
+        padding: 20px;
+        background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(247, 147, 30, 0.05) 100%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .order-info h3 {
+        color: #2d5c8a;
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+      }
+
+      .order-info p {
+        color: #666;
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .order-status {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .status-pendente {
+        background: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+      }
+
+      .status-processando {
+        background: #cce5ff;
+        color: #004085;
+        border: 1px solid #99d6ff;
+      }
+
+      .status-enviado {
+        background: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+      }
+
+      .status-entregue {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .status-cancelado {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      .order-items {
+        padding: 20px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .item:last-child {
+        border-bottom: none;
+      }
+
+      .item-image {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        background: #f8f9fa;
+      }
+
+      .item-details {
+        flex: 1;
+      }
+
+      .item-details h4 {
+        color: #2d5c8a;
+        margin-bottom: 5px;
+        font-size: 1rem;
+      }
+
+      .item-details p {
+        color: #666;
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .item-price {
+        font-weight: bold;
+        color: #ff6b35;
+        font-size: 1.1rem;
+      }
+
+      .order-total {
+        padding: 20px;
+        background: #f8f9fa;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .order-actions {
+        padding: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+      }
+
+      .action-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #e85a2b 0%, #e08516 100%);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: #fff;
+        color: #666;
+        border: 2px solid #e0e0e0;
+      }
+
+      .btn-secondary:hover {
+        border-color: #ff6b35;
+        color: #ff6b35;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #666;
+      }
+
+      .empty-state .icon {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
+      }
+
+      .empty-state h3 {
+        color: #2d5c8a;
+        margin-bottom: 10px;
+      }
+
+      .empty-state a {
+        color: #ff6b35;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .empty-state a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .orders-container {
+          margin: 20px;
+          padding: 10px;
+        }
+
+        .orders-header h1 {
+          font-size: 1.8rem;
+        }
+
+        .orders-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+
+        .order-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .order-actions {
+          justify-content: center;
+        }
+
+        .user-info {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header com Logo -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="img/logo.png" alt="Logo Loja PetShop" />
+          <h1>Loja PetShop</h1>
+        </div>
+        <!-- Menu de Navegação -->
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+        <!-- Área de Usuário e Carrinho -->
+        <div class="header-actions">
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <img src="img/icon/circle-user-solid.svg" alt="Usuário" />
+              <span>Minha Conta</span>
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="login.html" class="dropdown-item">Login</a>
+              <a href="cadastro.html" class="dropdown-item">Cadastrar</a>
+              <a href="meus-pedidos.html" class="dropdown-item">Meus Pedidos</a>
+            </div>
+          </div>
+          <div class="cart-container">
+            <button class="cart-btn" id="cartBtn">
+              <img src="img/icon/shopping-cart-solid.svg" alt="Carrinho" />
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="main-layout">
+      <!-- Container do conteúdo principal -->
+      <main class="main-content">
+        <div class="orders-container">
+          <div class="orders-header">
+            <h1>Meus Pedidos</h1>
+            <p>Acompanhe o status dos seus pedidos e histórico de compras</p>
+          </div>
+
+          <!-- Informações do usuário -->
+          <div class="user-info" id="userInfo">
+            <div class="user-avatar" id="userAvatar">U</div>
+            <div class="user-details">
+              <h3 id="userName">Usuário</h3>
+              <p id="userEmail">email@exemplo.com</p>
+            </div>
+          </div>
+
+          <!-- Estatísticas -->
+          <div class="orders-stats">
+            <div class="stat-card">
+              <div class="icon">📦</div>
+              <div class="number" id="totalOrders">5</div>
+              <div class="label">Total de Pedidos</div>
+            </div>
+            <div class="stat-card">
+              <div class="icon">✅</div>
+              <div class="number" id="deliveredOrders">3</div>
+              <div class="label">Entregues</div>
+            </div>
+            <div class="stat-card">
+              <div class="icon">🚚</div>
+              <div class="number" id="pendingOrders">2</div>
+              <div class="label">Em Andamento</div>
+            </div>
+            <div class="stat-card">
+              <div class="icon">💰</div>
+              <div class="number" id="totalSpent">R$ 1.245,50</div>
+              <div class="label">Total Gasto</div>
+            </div>
+          </div>
+
+          <!-- Filtros -->
+          <div class="orders-filter">
+            <button class="filter-btn active" data-status="todos">Todos</button>
+            <button class="filter-btn" data-status="pendente">Pendente</button>
+            <button class="filter-btn" data-status="processando">Processando</button>
+            <button class="filter-btn" data-status="enviado">Enviado</button>
+            <button class="filter-btn" data-status="entregue">Entregue</button>
+            <button class="filter-btn" data-status="cancelado">Cancelado</button>
+          </div>
+
+          <!-- Lista de pedidos -->
+          <div class="orders-list" id="ordersList">
+            <!-- Pedidos serão inseridos dinamicamente via JavaScript -->
+          </div>
+
+          <!-- Estado vazio (quando não há pedidos) -->
+          <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="icon">🛒</div>
+            <h3>Você ainda não fez nenhum pedido</h3>
+            <p>Que tal dar uma olhada nos nossos produtos?</p>
+            <a href="index.html">Começar a comprar</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2025 Loja PetShop | Todos os direitos reservados</p>
+      <p>Contato: contato@lojaPetShop.com</p>
+      <div class="redes">
+        <img src="img/icon/facebook-brands.svg" alt="" />
+        <img src="img/icon/instagram-brands.svg" alt="" />
+      </div>
+    </footer>
+
+    <script src="produtos.js"></script>
+    <script>
+      // Dados fictícios de pedidos para demonstração
+      const mockOrders = [
+        {
+          id: 'PET-2025-001',
+          date: '2025-06-28',
+          status: 'entregue',
+          total: 189.90,
+          items: [
+            {
+              name: 'Ração Premium para Gatos',
+              price: 98.90,
+              quantity: 1,
+              image: 'img/racao/RacaoPremiumparaGatos.jpg'
+            },
+            {
+              name: 'Ração Birbo',
+              price: 89.90,
+              quantity: 1,
+              image: 'img/racao/racaoBirbo.jpg'
+            }
+          ]
+        },
+        {
+          id: 'PET-2025-002',
+          date: '2025-06-30',
+          status: 'enviado',
+          total: 159.90,
+          items: [
+            {
+              name: 'Cama para Cachorro',
+              price: 159.90,
+              quantity: 1,
+              image: 'img/acessorios/CamaparaCachorro.jpg'
+            }
+          ]
+        },
+        {
+          id: 'PET-2025-003',
+          date: '2025-07-01',
+          status: 'processando',
+          total: 125.00,
+          items: [
+            {
+              name: 'Ração Origen',
+              price: 125.00,
+              quantity: 1,
+              image: 'img/racao/racaoOrigen.jpg'
+            }
+          ]
+        },
+        {
+          id: 'PET-2025-004',
+          date: '2025-06-25',
+          status: 'entregue',
+          total: 157.40,
+          items: [
+            {
+              name: 'Ração Gold',
+              price: 95.00,
+              quantity: 1,
+              image: 'img/racao/racaoGold.jpg'
+            },
+            {
+              name: 'Areia Higiênica',
+              price: 35.90,
+              quantity: 1,
+              image: 'img/racao/AreiaHigienicaparaGatos.jpg'
+            },
+            {
+              name: 'Brinquedo Borracha',
+              price: 25.90,
+              quantity: 1,
+              image: 'img/acessorios/BrinquedodeBorrachaparaCães.jpg'
+            }
+          ]
+        },
+        {
+          id: 'PET-2025-005',
+          date: '2025-06-20',
+          status: 'entregue',
+          total: 613.30,
+          items: [
+            {
+              name: 'Comedouro Automático',
+              price: 189.90,
+              quantity: 1,
+              image: 'img/acessorios/ComedouroeBebedouroAutomaticoparaCaes.jpg'
+            },
+            {
+              name: 'Ração Dog Plus',
+              price: 75.50,
+              quantity: 3,
+              image: 'img/racao/racaoDogPlus.jpg'
+            },
+            {
+              name: 'Ração Nutrive',
+              price: 78.50,
+              quantity: 2,
+              image: 'img/racao/racaoNutrive.jpg'
+            }
+          ]
+        }
+      ];
+
+      // Verificar se o usuário está logado
+      function checkUserLogin() {
+        const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+        
+        if (!isLoggedIn) {
+          alert('Você precisa fazer login para ver seus pedidos!');
+          window.location.href = 'login.html';
+          return false;
+        }
+        
+        // Carregar informações do usuário
+        const userEmail = localStorage.getItem('userEmail') || 'usuario@email.com';
+        const userName = localStorage.getItem('userName') || 'Usuário';
+        
+        document.getElementById('userEmail').textContent = userEmail;
+        document.getElementById('userName').textContent = userName;
+        document.getElementById('userAvatar').textContent = userName.charAt(0).toUpperCase();
+        
+        return true;
+      }
+
+      // Formatar data
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('pt-BR');
+      }
+
+      // Formatar preço
+      function formatPrice(price) {
+        return new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        }).format(price);
+      }
+
+      // Renderizar pedidos
+      function renderOrders(orders) {
+        const ordersList = document.getElementById('ordersList');
+        const emptyState = document.getElementById('emptyState');
+        
+        if (orders.length === 0) {
+          ordersList.style.display = 'none';
+          emptyState.style.display = 'block';
+          return;
+        }
+        
+        ordersList.style.display = 'flex';
+        emptyState.style.display = 'none';
+        
+        ordersList.innerHTML = orders.map(order => `
+          <div class="order-card" data-status="${order.status}">
+            <div class="order-header">
+              <div class="order-info">
+                <h3>Pedido #${order.id}</h3>
+                <p>Realizado em ${formatDate(order.date)}</p>
+              </div>
+              <div class="order-status status-${order.status}">
+                ${getStatusText(order.status)}
+              </div>
+            </div>
+            
+            <div class="order-items">
+              ${order.items.map(item => `
+                <div class="item">
+                  <img src="${item.image}" alt="${item.name}" class="item-image">
+                  <div class="item-details">
+                    <h4>${item.name}</h4>
+                    <p>Quantidade: ${item.quantity}</p>
+                  </div>
+                  <div class="item-price">${formatPrice(item.price * item.quantity)}</div>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div class="order-total">
+              <span>Total do Pedido:</span>
+              <span>${formatPrice(order.total)}</span>
+            </div>
+            
+            <div class="order-actions">
+              ${getOrderActions(order.status, order.id)}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Obter texto do status
+      function getStatusText(status) {
+        const statusMap = {
+          'pendente': 'Pendente',
+          'processando': 'Processando',
+          'enviado': 'Enviado',
+          'entregue': 'Entregue',
+          'cancelado': 'Cancelado'
+        };
+        return statusMap[status] || status;
+      }
+
+      // Obter ações do pedido
+      function getOrderActions(status, orderId) {
+        switch (status) {
+          case 'pendente':
+            return `
+              <button class="action-btn btn-secondary" onclick="cancelOrder('${orderId}')">Cancelar</button>
+              <button class="action-btn btn-primary" onclick="viewOrder('${orderId}')">Ver Detalhes</button>
+            `;
+          case 'processando':
+            return `
+              <button class="action-btn btn-primary" onclick="viewOrder('${orderId}')">Ver Detalhes</button>
+            `;
+          case 'enviado':
+            return `
+              <button class="action-btn btn-secondary" onclick="trackOrder('${orderId}')">Rastrear</button>
+              <button class="action-btn btn-primary" onclick="viewOrder('${orderId}')">Ver Detalhes</button>
+            `;
+          case 'entregue':
+            return `
+              <button class="action-btn btn-secondary" onclick="reorderItems('${orderId}')">Comprar Novamente</button>
+              <button class="action-btn btn-primary" onclick="viewOrder('${orderId}')">Ver Detalhes</button>
+            `;
+          case 'cancelado':
+            return `
+              <button class="action-btn btn-primary" onclick="viewOrder('${orderId}')">Ver Detalhes</button>
+            `;
+          default:
+            return `
+              <button class="action-btn btn-primary" onclick="viewOrder('${orderId}')">Ver Detalhes</button>
+            `;
+        }
+      }
+
+      // Filtrar pedidos
+      function filterOrders(status) {
+        const filteredOrders = status === 'todos' ? mockOrders : mockOrders.filter(order => order.status === status);
+        renderOrders(filteredOrders);
+        
+        // Atualizar botões de filtro
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        document.querySelector(`[data-status="${status}"]`).classList.add('active');
+      }
+
+      // Ações dos pedidos
+      function viewOrder(orderId) {
+        alert(`Visualizar detalhes do pedido ${orderId}`);
+      }
+
+      function cancelOrder(orderId) {
+        if (confirm(`Deseja realmente cancelar o pedido ${orderId}?`)) {
+          alert(`Pedido ${orderId} cancelado com sucesso!`);
+          // Aqui você atualizaria o status no banco de dados
+        }
+      }
+
+      function trackOrder(orderId) {
+        alert(`Rastreamento do pedido ${orderId}\n\nStatus: Em trânsito\nPrevisão: 2-3 dias úteis`);
+      }
+
+      function reorderItems(orderId) {
+        if (confirm('Deseja adicionar os itens deste pedido ao carrinho?')) {
+          alert('Itens adicionados ao carrinho!');
+        }
+      }
+
+      // Calcular estatísticas
+      function updateStats() {
+        const totalOrders = mockOrders.length;
+        const deliveredOrders = mockOrders.filter(order => order.status === 'entregue').length;
+        const pendingOrders = mockOrders.filter(order => ['pendente', 'processando', 'enviado'].includes(order.status)).length;
+        const totalSpent = mockOrders.reduce((sum, order) => sum + order.total, 0);
+        
+        document.getElementById('totalOrders').textContent = totalOrders;
+        document.getElementById('deliveredOrders').textContent = deliveredOrders;
+        document.getElementById('pendingOrders').textContent = pendingOrders;
+        document.getElementById('totalSpent').textContent = formatPrice(totalSpent);
+      }
+
+      // Inicialização
+      document.addEventListener('DOMContentLoaded', function() {
+        if (checkUserLogin()) {
+          updateStats();
+          renderOrders(mockOrders);
+          
+          // Event listeners para filtros
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const status = this.dataset.status;
+              filterOrders(status);
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
