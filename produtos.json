@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "produto": "Ração Premium para Cães",
+    "preço": 99.90,
+    "detalhe": "Ração completa e balanceada para cães adultos de porte médio, com ingredientes de alta qualidade.",
+    "imagem": "https://example.com/images/racao_cao_premium.jpg"
+  },
+  {
+    "id": 2,
+    "produto": "Brinquedo de Borracha para Cães",
+    "preço": 45.50,
+    "detalhe": "Brinquedo durável e resistente, ideal para cães que adoram mastigar. Ajuda na saúde dental.",
+    "imagem": "https://example.com/images/brinquedo_borracha.jpg"
+  },
+  {
+    "id": 3,
+    "produto": "Coleira e Guia para Gatos",
+    "preço": 59.90,
+    "detalhe": "Coleira ajustável com guia, confortável e segura para passeios ao ar livre.",
+    "imagem": "https://example.com/images/coleira_guia_gato.jpg"
+  },
+  {
+    "id": 4,
+    "produto": "Shampoo Hipoalergênico para Pets",
+    "preço": 39.99,
+    "detalhe": "Shampoo suave, ideal para peles sensíveis, deixando o pelo do seu pet macio e cheiroso.",
+    "imagem": "https://example.com/images/shampoo_hipoalergenico.jpg"
+  },
+  {
+    "id": 5,
+    "produto": "Cama para Cachorro - Tamanho Grande",
+    "preço": 199.90,
+    "detalhe": "Cama confortável e resistente, ideal para cães de grande porte, com tecido antialérgico.",
+    "imagem": "https://example.com/images/cama_cachorro_grande.jpg"
+  },
+  {
+    "id": 6,
+    "produto": "Ração Premium para Gatos",
+    "preço": 89.90,
+    "detalhe": "Ração balanceada para gatos adultos, com proteínas de alta qualidade e nutrientes essenciais para a saúde.",
+    "imagem": "https://example.com/images/racao_gato_premium.jpg"
+  },
+  {
+    "id": 7,
+    "produto": "Areia Higiênica para Gatos",
+    "preço": 29.90,
+    "detalhe": "Areia absorvente, com controle de odores, ideal para caixas de areia de gatos.",
+    "imagem": "https://example.com/images/areia_higienica.jpg"
+  },
+  {
+    "id": 8,
+    "produto": "Escova de Cabelo para Pets",
+    "preço": 19.90,
+    "detalhe": "Escova de cerdas macias, ideal para desembaraçar o pelo do seu pet, sem causar desconforto.",
+    "imagem": "https://example.com/images/escova_pets.jpg"
+  },
+  {
+    "id": 9,
+    "produto": "Comedouro e Bebedouro Automático para Cães",
+    "preço": 159.90,
+    "detalhe": "Comedouro e bebedouro com sistema automático, para garantir alimentação e hidratação constante para seu pet.",
+    "imagem": "https://example.com/images/comedouro_automatico.jpg"
+  },
+  {
+    "id": 10,
+    "produto": "Cinto de Segurança para Cães",
+    "preço": 69.90,
+    "detalhe": "Cinto de segurança ajustável, para viagens seguras e confortáveis para o seu pet no carro.",
+    "imagem": "https://example.com/images/cinto_seguranca.jpg"
+  }
+]
