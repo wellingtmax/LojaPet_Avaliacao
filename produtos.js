@@ -429,3 +429,99 @@ function addCarrosselEventListeners() {
     });
   });
 }
+
+// ======================
+// SIDEBAR FUNCTIONALITY - REFATORADO
+// ======================
+
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebar = document.getElementById('sidebar');
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebarClose = document.getElementById('sidebarClose');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+  // Abrir sidebar
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+      sidebarToggle.classList.add('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Fechar sidebar
+  function closeSidebar() {
+    sidebar.classList.remove('active');
+    sidebarOverlay.classList.remove('active');
+    sidebarToggle.classList.remove('hidden');
+    document.body.style.overflow = '';
+  }
+
+  if (sidebarClose) {
+    sidebarClose.addEventListener('click', closeSidebar);
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeSidebar);
+  }
+
+  // Fechar com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+      closeSidebar();
+    }
+  });
+
+  // Controle dos submenus
+  const menuLinks = document.querySelectorAll('.menu-link[data-submenu]');
+  
+  menuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const submenuId = link.getAttribute('data-submenu');
+      const submenu = document.getElementById(`submenu-${submenuId}`);
+      const menuItem = link.closest('.menu-item');
+      
+      if (submenu) {
+        // Fechar outros submenus
+        document.querySelectorAll('.submenu.active').forEach(otherSubmenu => {
+          if (otherSubmenu !== submenu) {
+            otherSubmenu.classList.remove('active');
+            otherSubmenu.closest('.menu-item').classList.remove('active');
+          }
+        });
+        
+        // Toggle submenu atual
+        submenu.classList.toggle('active');
+        menuItem.classList.toggle('active');
+        
+        // Atualizar seta
+        const arrow = link.querySelector('.submenu-arrow');
+        if (arrow) {
+          if (submenu.classList.contains('active')) {
+            arrow.textContent = '▲';
+          } else {
+            arrow.textContent = '▼';
+          }
+        }
+      }
+    });
+  });
+
+  // Responsividade - ajustar comportamento em telas grandes
+  function handleResize() {
+    if (window.innerWidth > 768) {
+      // Em telas grandes, remover estilos mobile
+      document.body.style.overflow = '';
+      sidebarOverlay.classList.remove('active');
+      // Se o sidebar não estiver ativo, mostrar o botão
+      if (!sidebar.classList.contains('active')) {
+        sidebarToggle.classList.remove('hidden');
+      }
+    }
+  }
+
+  window.addEventListener('resize', handleResize);
+});

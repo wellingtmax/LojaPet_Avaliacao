@@ -730,157 +730,273 @@ form button:hover {
     box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
-/* Responsividade para dispositivos móveis */
-@media screen and (max-width: 768px) {
-    /* Header responsivo */
-    header .container {
-        flex-direction: column;
-        gap: 15px;
-        padding: 0 15px;
-    }
-    
-    .logo {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-    
-    .logo img {
-        height: 50px;
-    }
-    
-    .logo h1 {
-        font-size: 24px;
-    }
+/* ======================
+   SIDEBAR MENU - REFATORADO
+   ====================== */
 
-    .header-actions {
-        order: -1;
-        width: 100%;
-        justify-content: space-between;
-        padding: 0 20px;
-    }
-
-    .user-btn span {
-        display: none;
-    }
-
-    .user-btn {
-        padding: 8px 12px;
-    }
-
-    .cart-btn {
-        padding: 8px 12px;
-    }
-
-    #produtos {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        padding: 20px;
-    }
-
-    #produtos .produto img {
-        height: 160px;
-    }
-
-    #produtos .produto h3 {
-        font-size: 16px;
-    }
-
-    .produto-price {
-        font-size: 18px;
-    }
-
-    .btn-buy-produto {
-        padding: 10px 15px;
-        font-size: 14px;
-    }
-
-    nav ul {
-        gap: 15px;
-    }
-
-    nav ul li a {
-        font-size: 16px;
-    }
-
-    footer {
-        font-size: 14px;
-        display: flex;
-    }
-
-    form {
-        padding: 20px;
-    }
-
-    form button {
-        width: 100%;
-    }
-
-    /* Carrossel responsivo */
-    #carrossel {
-        margin: 20px 10px;
-        height: 320px;
-    }
-
-    .card {
-        min-width: 180px;
-        max-width: 180px;
-    }
-
-    .card img {
-        height: 140px;
-    }
-
-    .card h3 {
-        font-size: 14px;
-    }
-
-    .card .price {
-        font-size: 16px;
-    }
-
-    .card-content {
-        padding: 10px;
-    }
-
-    .btn-buy {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-
-    .carrossel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-
-    #carrossel-prev {
-        left: -5px;
-    }
-
-    #carrossel-next {
-        right: -5px;
-    }
-    
-    /* Carrinho responsivo */
-    .cart-dropdown {
-        min-width: 300px;
-        max-width: 320px;
-        right: -10px;
-    }
-    
-    .cart-item-name {
-        font-size: 13px;
-    }
-    
-    .cart-item-price {
-        font-size: 12px;
-    }
-}
-
-.redes{
-    width: 50px;
+/* Layout principal responsivo */
+.main-layout {
     display: flex;
-    gap: 15px;
-
+    min-height: calc(100vh - 120px);
+    position: relative;
 }
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 120px; /* Abaixo do header */
+    height: calc(100vh - 120px);
+    width: 220px;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD23F 100%);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar-header {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.sidebar-header h3 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Botão toggle para abrir sidebar */
+.sidebar-toggle {
+    position: fixed;
+    left: 20px;
+    top: 140px;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 12px 15px;
+    border-radius: 8px;
+    z-index: 1001;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+    font-weight: bold;
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar-toggle:hover {
+    background: linear-gradient(135deg, #F7931E 0%, #FF6B35 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+/* Esconder botão toggle quando sidebar estiver ativo */
+.sidebar-toggle.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Menu do sidebar */
+.sidebar-nav {
+    padding: 5px 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    margin: 0;
+    width: 100%;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    font-weight: 500;
+    font-size: 13px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.menu-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-left: 4px solid #fff;
+    transform: translateX(3px);
+}
+
+.menu-icon {
+    font-size: 16px;
+    margin-right: 10px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.menu-link span:not(.menu-icon):not(.submenu-arrow) {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.submenu-arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.has-submenu .menu-link.active .submenu-arrow {
+    transform: rotate(180deg);
+}
+
+/* Submenus */
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.submenu.active {
+    max-height: 300px;
+}
+
+.submenu li {
+    margin: 0;
+    width: 100%;
+}
+
+.submenu a {
+    display: block;
+    padding: 10px 15px 10px 40px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.submenu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-left: 4px solid rgba(255, 255, 255, 0.5);
+    transform: translateX(2px);
+}
+
+/* Container do conteúdo principal */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+/* Overlay para mobile */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        top: 0;
+        height: 100vh;
+        width: 250px;
+    }
+    
+    .sidebar-toggle {
+        top: 20px;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sidebar.desktop-open {
+        position: relative;
+        transform: translateX(0);
+        height: auto;
+        top: 0;
+    }
+    
+    .sidebar.desktop-open + .main-content {
+        margin-left: 260px;
+    }
+}
+
+/* Carrossel */
 
