@@ -5,146 +5,262 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loja PetShop</title>
     <link rel="stylesheet" href="style.css" />
-    <style>
-      #carrossel {
-        position: relative;
-        width: 100vw;
-        max-width: 100vw;
-        height: 56vw;
-        max-height: 520px;
-        min-height: 240px;
-        margin: 24px 0 32px 0;
-        overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        background: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #carrossel img {
-        width: 100%;
-        height: 100%;
-        max-width: 1400px;
-        max-height: 520px;
-        min-height: 240px;
-        aspect-ratio: 16/9;
-        object-fit: cover;
-        border-radius: 8px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1), opacity 0.7s;
-        opacity: 0;
-        z-index: 1;
-        box-shadow: 0 1px 8px rgba(0,0,0,0.07);
-      }
-      #carrossel img.slide-in {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-        z-index: 2;
-      }
-      #carrossel img.slide-out-left {
-        transform: translate(-150%, -50%) scale(0.98);
-        opacity: 0;
-      }
-      #carrossel img.slide-out-right {
-        transform: translate(50%, -50%) scale(0.98);
-        opacity: 0;
-      }
-      #carrossel-dots {
-        user-select: none;
-      }
-      #carrossel-dots .dot {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: #bbb;
-        border: 2px solid #fff;
-        cursor: pointer;
-        transition: background 0.3s, transform 0.2s;
-        box-shadow: 0 1px 4px #0002;
-      }
-      #carrossel-dots .dot.active {
-        background: #666;
-        transform: scale(1.2);
-      }
-    </style>
   </head>
   <body>
-    <!-- Menu de Navegação -->
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="contato.html">Contato</a></li>
-      </ul>
-    </nav>
+    <!-- Header com Logo -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="img/logo.png" alt="Logo Loja PetShop" />
+          <h1>Loja PetShop</h1>
+        </div>
+        <!-- Menu de Navegação -->
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+        <!-- Área de Usuário e Carrinho -->
+        <div class="header-actions">
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuBtn">
+              <img src="img/icon/circle-user-solid.svg" alt="Usuário" />
+              <span>Minha Conta</span>
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="#" class="dropdown-item">Login</a>
+              <a href="#" class="dropdown-item">Cadastrar</a>
+              <a href="#" class="dropdown-item">Meus Pedidos</a>
+            </div>
+          </div>
+          <div class="cart-container">
+            <button class="cart-btn" id="cartBtn">
+              <img src="img/icon/shopping-cart-solid.svg" alt="Carrinho" />
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <div class="cart-dropdown" id="cartDropdown">
+              <div class="cart-header">
+                <h3>Meu Carrinho</h3>
+              </div>
+              <div class="cart-items" id="cartItems">
+                <div class="cart-empty">
+                  <p>Seu carrinho está vazio</p>
+                </div>
+              </div>
+              <div class="cart-footer" id="cartFooter" style="display: none;">
+                <div class="cart-total">
+                  <strong>Total: R$ <span id="cartTotal">0,00</span></strong>
+                </div>
+                <div class="cart-actions">
+                  <button class="btn-clear-cart" id="clearCartBtn">Limpar</button>
+                  <button class="btn-checkout" id="checkoutBtn">Finalizar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <!-- Carrossel de Imagens -->
+    <!-- Carrossel de Cards -->
     <div id="carrossel">
-      <img src="img/racao/racaoBirbo.jpg" alt="Produto 1" />
-      <img src="img/racao/racaoDogPlus.jpg" alt="Produto 2" />
-      <img src="img/racao/racaoGold.jpg" alt="Produto 3" />
-      <img src="img/racao/racaoMixDog.jpg" alt="Produto 4" />
-      <img src="img/racao/racaoMulti.jpg" alt="Produto 5" />
-      <img src="img/racao/racaoNutrive.jpg" alt="Produto 6" />
-      <img src="img/racao/racaoOrigen.jpg" alt="Produto 7" />
+      <div class="carrossel-container">
+        <div class="carrossel-track">
+          <div class="card">
+            <a href="pages/racao-birbo.html" class="card-link">
+              <img src="img/racao/racaoBirbo.jpg" alt="Ração Birbo" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Birbo</h3>
+              <p class="price">R$ 89,90</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Birbo" data-price="89.90">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/racao-dog-plus.html" class="card-link">
+              <img src="img/racao/racaoDogPlus.jpg" alt="Ração Dog Plus" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Dog Plus</h3>
+              <p class="price">R$ 75,50</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Dog Plus" data-price="75.50">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/racao-gold.html" class="card-link">
+              <img src="img/racao/racaoGold.jpg" alt="Ração Gold" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Gold</h3>
+              <p class="price">R$ 95,00</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Gold" data-price="95.00">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/racao-mix-dog.html" class="card-link">
+              <img src="img/racao/racaoMixDog.jpg" alt="Ração Mix Dog" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Mix Dog</h3>
+              <p class="price">R$ 68,90</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Mix Dog" data-price="68.90">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/racao-multi.html" class="card-link">
+              <img src="img/racao/racaoMulti.jpg" alt="Ração Multi" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Multi</h3>
+              <p class="price">R$ 82,00</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Multi" data-price="82.00">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/racao-nutrive.html" class="card-link">
+              <img src="img/racao/racaoNutrive.jpg" alt="Ração Nutrive" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Nutrive</h3>
+              <p class="price">R$ 78,50</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Nutrive" data-price="78.50">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/racao-origen.html" class="card-link">
+              <img src="img/racao/racaoOrigen.jpg" alt="Ração Origen" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Origen</h3>
+              <p class="price">R$ 125,00</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Origen" data-price="125.00">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/racao-premium-gatos.html" class="card-link">
+              <img src="img/racao/RacaoPremiumparaGatos.jpg" alt="Ração Premium para Gatos" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Premium Gatos</h3>
+              <p class="price">R$ 98,90</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Premium Gatos" data-price="98.90">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/racao-gatos-receita.html" class="card-link">
+              <img src="img/racao/racaoReceita.jpg" alt="Ração Receita" />
+            </a>
+            <div class="card-content">
+              <h3>Ração Receita</h3>
+              <p class="price">R$ 85,00</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Ração Receita" data-price="85.00">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/areia-higienica-gatos.html" class="card-link">
+              <img src="img/racao/AreiaHigienicaparaGatos.jpg" alt="Areia Higiênica" />
+            </a>
+            <div class="card-content">
+              <h3>Areia Higiênica</h3>
+              <p class="price">R$ 35,90</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Areia Higiênica" data-price="35.90">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/brinquedo-borracha-caes.html" class="card-link">
+              <img src="img/acessorios/BrinquedodeBorrachaparaCães.jpg" alt="Brinquedo de Borracha" />
+            </a>
+            <div class="card-content">
+              <h3>Brinquedo Borracha</h3>
+              <p class="price">R$ 25,90</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Brinquedo Borracha" data-price="25.90">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/cama-cachorro.html" class="card-link">
+              <img src="img/acessorios/CamaparaCachorro.jpg" alt="Cama para Cachorro" />
+            </a>
+            <div class="card-content">
+              <h3>Cama para Cachorro</h3>
+              <p class="price">R$ 159,90</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Cama para Cachorro" data-price="159.90">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="img/acessorios/ColeiraeGuiaparaGatos.jpg" alt="Coleira e Guia" />
+            <div class="card-content">
+              <h3>Coleira e Guia</h3>
+              <p class="price">R$ 45,50</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Coleira e Guia" data-price="45.50">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <a href="pages/comedouro-bebedouro-automatico.html" class="card-link">
+              <img src="img/acessorios/ComedouroeBebedouroAutomaticoparaCaes.jpg" alt="Comedouro Automático" />
+            </a>
+            <div class="card-content">
+              <h3>Comedouro Automático</h3>
+              <p class="price">R$ 189,90</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Comedouro Automático" data-price="189.90">Comprar</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="img/acessorios/EscovadeCabeloparaPets.jpg" alt="Escova de Cabelo" />
+            <div class="card-content">
+              <h3>Escova de Cabelo</h3>
+              <p class="price">R$ 32,50</p>
+              <div class="card-actions">
+                <button class="btn-buy" data-name="Escova de Cabelo" data-price="32.50">Comprar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <button
         id="carrossel-prev"
+        class="carrossel-btn"
         aria-label="Anterior"
-        style="
-          position: absolute;
-          left: 10px;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 3;
-          background: #fff;
-          border: none;
-          border-radius: 50%;
-          width: 32px;
-          height: 32px;
-          box-shadow: 0 1px 4px #0002;
-          cursor: pointer;
-          font-size: 20px;
-        "
       >
         &#8592;
       </button>
       <button
         id="carrossel-next"
+        class="carrossel-btn"
         aria-label="Próximo"
-        style="
-          position: absolute;
-          right: 10px;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 3;
-          background: #fff;
-          border: none;
-          border-radius: 50%;
-          width: 32px;
-          height: 32px;
-          box-shadow: 0 1px 4px #0002;
-          cursor: pointer;
-          font-size: 20px;
-        "
       >
         &#8594;
       </button>
-      <div
-        id="carrossel-dots"
-        style="
-          position: absolute;
-          bottom: 18px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 10px;
-          z-index: 4;
-        "
-      ></div>
+      <div id="carrossel-dots"></div>
     </div>
 
     <!-- Seção Central com Listagem de Produtos -->
