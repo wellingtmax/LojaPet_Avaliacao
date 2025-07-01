@@ -1,11 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loja PetShop</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      #carrossel {
+        position: relative;
+        width: 100vw;
+        max-width: 100vw;
+        height: 56vw;
+        max-height: 520px;
+        min-height: 240px;
+        margin: 24px 0 32px 0;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #carrossel img {
+        width: 100%;
+        height: 100%;
+        max-width: 1400px;
+        max-height: 520px;
+        min-height: 240px;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 8px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1), opacity 0.7s;
+        opacity: 0;
+        z-index: 1;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+      }
+      #carrossel img.slide-in {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        z-index: 2;
+      }
+      #carrossel img.slide-out-left {
+        transform: translate(-150%, -50%) scale(0.98);
+        opacity: 0;
+      }
+      #carrossel img.slide-out-right {
+        transform: translate(50%, -50%) scale(0.98);
+        opacity: 0;
+      }
+      #carrossel-dots {
+        user-select: none;
+      }
+      #carrossel-dots .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #bbb;
+        border: 2px solid #fff;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+        box-shadow: 0 1px 4px #0002;
+      }
+      #carrossel-dots .dot.active {
+        background: #666;
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Menu de Navegação -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+
+    <!-- Carrossel de Imagens -->
+    <div id="carrossel">
+      <img src="img/racao/racaoBirbo.jpg" alt="Produto 1" />
+      <img src="img/racao/racaoDogPlus.jpg" alt="Produto 2" />
+      <img src="img/racao/racaoGold.jpg" alt="Produto 3" />
+      <img src="img/racao/racaoMixDog.jpg" alt="Produto 4" />
+      <img src="img/racao/racaoMulti.jpg" alt="Produto 5" />
+      <img src="img/racao/racaoNutrive.jpg" alt="Produto 6" />
+      <img src="img/racao/racaoOrigen.jpg" alt="Produto 7" />
+      <button
+        id="carrossel-prev"
+        aria-label="Anterior"
+        style="
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 3;
+          background: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          box-shadow: 0 1px 4px #0002;
+          cursor: pointer;
+          font-size: 20px;
+        "
+      >
+        &#8592;
+      </button>
+      <button
+        id="carrossel-next"
+        aria-label="Próximo"
+        style="
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 3;
+          background: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          box-shadow: 0 1px 4px #0002;
+          cursor: pointer;
+          font-size: 20px;
+        "
+      >
+        &#8594;
+      </button>
+      <div
+        id="carrossel-dots"
+        style="
+          position: absolute;
+          bottom: 18px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 10px;
+          z-index: 4;
+        "
+      ></div>
+    </div>
+
+    <!-- Seção Central com Listagem de Produtos -->
+    <section id="produtos">
+      <!-- Aqui os produtos serão listados dinamicamente com JS -->
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2025 Loja PetShop | Todos os direitos reservados</p>
+      <p>Contato: contato@lojaPetShop.com</p>
+
+      <div class="redes">
+        <img src="img/icon/facebook-brands.svg" alt="" />
+        <img src="img/icon/instagram-brands.svg" alt="" />
+      </div>
+    </footer>
+
+    <script src="produtos.js"></script>
+  </body>
 </html>
