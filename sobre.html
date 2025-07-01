@@ -1,33 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre - Loja PetShop</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html" class="active">Sobre</a></li>
-        <li><a href="contato.html">Contato</a></li>
-      </ul>
-    </nav>
-    <main class="container">
-      <h1>Sobre a Loja PetShop</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre - Loja PetShop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Menu de Navegação -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sobre.html" class="active">Sobre</a></li>
+      <li><a href="contato.html">Contato</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <section id="sobre-section">
+      <h1 style="text-align: center; font-size: 2.8rem; margin-top: 32px; letter-spacing: 1px;">🐾 Sobre a Loja PetShop</h1>
+
       <p>
-        Bem-vindo à nossa loja! Somos apaixonados por pets e oferecemos os
-        melhores produtos para o seu animal de estimação.
+        A <strong>Loja PetShop</strong> nasceu do amor incondicional pelos animais e da vontade de fazer a diferença na vida de tutores e seus companheiros de quatro patas.<br>
+        Tudo começou com um pequeno espaço em nossa comunidade, onde acolhíamos animais resgatados e oferecíamos produtos básicos para cuidados diários.
       </p>
-    </main>
-    <footer>
-      <p>&copy; 2025 Loja PetShop | Todos os direitos reservados</p>
-      <p>Contato: contato@lojaPetShop.com</p>
-      <div class="redes">
-        <img src="img/icon/facebook-brands.svg" alt="" />
-        <img src="img/icon/instagram-brands.svg" alt="" />
+
+      <p>
+        Com o passar do tempo — e com o carinho dos nossos clientes — crescemos e nos tornamos uma loja online dedicada a oferecer não só produtos, mas também confiança, acolhimento e orientação para quem ama e cuida dos seus pets.
+      </p>
+
+      <p>
+        Nosso compromisso vai além da venda. Valorizamos o bem-estar animal, o respeito à natureza e a construção de laços verdadeiros entre humanos e bichinhos.<br>
+        Trabalhamos com fornecedores que compartilham da mesma ética, selecionamos produtos de qualidade comprovada e buscamos sempre escutar o que você e seu pet precisam.
+      </p>
+
+      <h2>Nossos valores são simples e inegociáveis:</h2>
+      <ul class="valores">
+        <li>🐶 Amor e respeito pelos animais</li>
+        <li>🤝 Transparência e ética no atendimento</li>
+        <li>🚚 Agilidade e cuidado em cada entrega</li>
+        <li>🌱 Sustentabilidade nos processos</li>
+        <li>💬 Apoio constante antes, durante e após sua compra</li>
+      </ul>
+
+      <p>
+        Seja para alimentar, brincar, proteger ou mimar, estamos aqui para ajudar você a cuidar de quem te dá amor todos os dias —<br>
+        sem pedir nada em troca, além de carinho.
+      </p>
+
+      <!-- Carrossel de imagens do time e empresa -->
+      <div class="carrossel-sobre">
+        <a href="https://github.com/ManinhoDev" target="_blank" class="link-slide"><img src="img/CRISTOVAO.jpg" alt="SGT CRISTÓVÃO" class="slide-sobre ativo" /></a>
+        <a href="https://github.com/wellingtmax" target="_blank" class="link-slide"><img src="img/JHOTA.jpg" alt="SGT J. OLIVEIRA" class="slide-sobre" /></a>
+        <a href="https://github.com/gabrielfaria87" target="_blank" class="link-slide"><img src="img/FARIA.jpg" alt="SGT FARIA" class="slide-sobre" /></a>
       </div>
-    </footer>
-  </body>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2025 Loja PetShop | Todos os direitos reservados</p>
+    <p>Contato: contato@lojaPetShop.com</p>
+    <div class="redes">
+      <img src="img/icon/facebook-brands.svg" alt="Facebook" />
+      <img src="img/icon/instagram-brands.svg" alt="Instagram" />
+    </div>
+  </footer>
+  <script>
+    // Carrossel slide para sobre.html
+    const slideLinks = document.querySelectorAll('.carrossel-sobre .link-slide');
+    const slides = document.querySelectorAll('.slide-sobre');
+    let slideIdx = 0;
+    let interval = setInterval(nextSlide, 3000);
+
+    function nextSlide() {
+      slides[slideIdx].classList.remove('ativo');
+      slides[slideIdx].classList.add('slide-out-left');
+      slideLinks[slideIdx].style.zIndex = 1;
+      slideIdx = (slideIdx + 1) % slides.length;
+      slides[slideIdx].classList.remove('slide-out-left');
+      slides[slideIdx].classList.add('ativo');
+      slideLinks[slideIdx].style.zIndex = 2;
+    }
+
+    slideLinks.forEach((link, idx) => {
+      link.addEventListener('mouseenter', () => {
+        clearInterval(interval);
+      });
+      link.addEventListener('mouseleave', () => {
+        interval = setInterval(nextSlide, 3000);
+      });
+    });
+  </script>
+  <style>
+    .carrossel-sobre {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 32px auto 0 auto;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carrossel-sobre .link-slide {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      border-radius: 50%;
+      transition: z-index 0.7s;
+    }
+    .carrossel-sobre .link-slide:hover {
+      cursor: pointer;
+      box-shadow: 0 0 0 4px #f9afae55;
+    }
+    .carrossel-sobre img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      z-index: 1;
+      transition: transform 0.7s cubic-bezier(.77,0,.18,1), opacity 0.7s;
+    }
+    .carrossel-sobre img.ativo {
+      opacity: 1;
+      z-index: 2;
+      transform: translateX(0);
+    }
+    .carrossel-sobre img.slide-out-left {
+      opacity: 0;
+      z-index: 1;
+      transform: translateX(-100%);
+      transition: transform 0.7s, opacity 0.7s;
+    }
+  </style>
 </html>
+
+

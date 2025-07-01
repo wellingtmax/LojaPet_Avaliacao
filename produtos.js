@@ -144,3 +144,5 @@ document.addEventListener("DOMContentLoaded", function () {
     imagem: "assets/images/shampoo.jpg",
   },
 ];
+
+//-------------------------------------------------------------//
