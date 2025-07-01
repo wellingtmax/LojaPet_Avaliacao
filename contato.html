@@ -205,8 +205,10 @@ Seja para tirar dúvidas, agendar um banho caprichado,<br> perguntar sobre raç�
                     id="cep"
                     name="cep"
                     required
-                    
+                    placeholder="00000-000"
+                    maxlength="9"
                     >
+                    <small id="cep-status" class="cep-feedback"></small>
                 </div>
 
                    <div class="input group">
@@ -218,14 +220,15 @@ Seja para tirar dúvidas, agendar um banho caprichado,<br> perguntar sobre raç�
                     id="rua"
                     name="rua"
                     required
+                    readonly
                     >
                     
                 </div>
 
-                <div>
+                <div class="input-row">
                     <div class="input group">
-                    <label for="Numero">
-                        Numero
+                    <label for="numero">
+                        Número
                     </label>
                     <input 
                     type="text" 
@@ -235,22 +238,35 @@ Seja para tirar dúvidas, agendar um banho caprichado,<br> perguntar sobre raç�
                     >
                     
                 </div>
-                  <div>
-                    <div class="input group">
+                  <div class="input group">
                     <label for="bairro">
                         Bairro
                     </label>
                     <input 
-                    type="bairro" 
+                    type="text" 
                     id="bairro"
                     name="bairro"
                     required
+                    readonly
                     >
                     
                 </div>
-
-
                 </div>
+
+                <div class="input-row">
+                   <div class="input group">
+                    <label for="cidade">
+                        Cidade
+                    </label>
+                    <input 
+                    type="text" 
+                    id="cidade"
+                    name="cidade"
+                    required
+                    readonly
+                    >
+                </div>
+
                    <div class="input group">
                     <label for="estado">
                         Estado
@@ -260,7 +276,9 @@ Seja para tirar dúvidas, agendar um banho caprichado,<br> perguntar sobre raç�
                     id="estado"
                     name="estado"
                     required
+                    readonly
                     >
+                </div>
                 </div>
 
                   <div class="input group">
@@ -321,6 +339,134 @@ Seja para tirar dúvidas, agendar um banho caprichado,<br> perguntar sobre raç�
         </div>
     </footer>
     
+    <script>
+        // Integração com ViaCEP
+        document.addEventListener('DOMContentLoaded', function() {
+            const cepInput = document.getElementById('cep');
+            const ruaInput = document.getElementById('rua');
+            const bairroInput = document.getElementById('bairro');
+            const cidadeInput = document.getElementById('cidade');
+            const estadoInput = document.getElementById('estado');
+            const cepStatus = document.getElementById('cep-status');
+
+            // Função para formatar CEP (adicionar hífen)
+            function formatCEP(value) {
+                return value.replace(/\D/g, '').replace(/^(\d{5})(\d{3})$/, '$1-$2');
+            }
+
+            // Função para limpar campos de endereço
+            function clearAddressFields() {
+                ruaInput.value = '';
+                bairroInput.value = '';
+                cidadeInput.value = '';
+                estadoInput.value = '';
+                ruaInput.readOnly = false;
+                bairroInput.readOnly = false;
+            }
+
+            // Função para mostrar status do CEP
+            function showStatus(message, type) {
+                cepStatus.textContent = message;
+                cepStatus.className = `cep-feedback ${type}`;
+            }
+
+            // Função para buscar CEP na API ViaCEP
+            async function buscarCEP(cep) {
+                // Remove formatação e mantém apenas números
+                const cepLimpo = cep.replace(/\D/g, '');
+                
+                // Valida se o CEP tem 8 dígitos
+                if (cepLimpo.length !== 8) {
+                    showStatus('CEP deve ter 8 dígitos', 'error');
+                    clearAddressFields();
+                    return;
+                }
+
+                try {
+                    showStatus('Buscando CEP...', 'loading');
+                    
+                    const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+                    const data = await response.json();
+
+                    if (data.erro) {
+                        showStatus('CEP não encontrado', 'error');
+                        clearAddressFields();
+                        return;
+                    }
+
+                    // Preenche os campos com os dados retornados
+                    ruaInput.value = data.logradouro || '';
+                    bairroInput.value = data.bairro || '';
+                    cidadeInput.value = data.localidade || '';
+                    estadoInput.value = data.uf || '';
+
+                    // Define campos como readonly se foram preenchidos automaticamente
+                    if (data.logradouro) ruaInput.readOnly = true;
+                    if (data.bairro) bairroInput.readOnly = true;
+                    cidadeInput.readOnly = true;
+                    estadoInput.readOnly = true;
+
+                    showStatus('CEP encontrado! ✓', 'success');
+
+                    // Foca no campo número se tudo foi preenchido
+                    if (data.logradouro && data.bairro) {
+                        document.getElementById('numero').focus();
+                    }
+
+                } catch (error) {
+                    console.error('Erro ao buscar CEP:', error);
+                    showStatus('Erro ao buscar CEP. Tente novamente.', 'error');
+                    clearAddressFields();
+                }
+            }
+
+            // Event listeners
+            cepInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 8) value = value.substring(0, 8);
+                e.target.value = formatCEP(value);
+            });
+
+            cepInput.addEventListener('blur', function(e) {
+                const cep = e.target.value.replace(/\D/g, '');
+                if (cep.length === 8) {
+                    buscarCEP(cep);
+                } else if (cep.length > 0) {
+                    showStatus('CEP incompleto', 'error');
+                    clearAddressFields();
+                } else {
+                    showStatus('', '');
+                    clearAddressFields();
+                }
+            });
+
+            // Permite editar campos quando o usuário clica neles
+            [ruaInput, bairroInput].forEach(input => {
+                input.addEventListener('click', function() {
+                    if (this.readOnly) {
+                        this.readOnly = false;
+                        showStatus('Campo liberado para edição', 'info');
+                    }
+                });
+            });
+
+            // Validação do formulário
+            const form = document.getElementById('contact_form');
+            form.addEventListener('submit', function(e) {
+                const cep = cepInput.value.replace(/\D/g, '');
+                
+                if (cep.length !== 8) {
+                    e.preventDefault();
+                    alert('Por favor, insira um CEP válido com 8 dígitos.');
+                    cepInput.focus();
+                    return;
+                }
+
+                // Aqui você pode adicionar outras validações
+                console.log('Formulário válido, enviando...');
+            });
+        });
+    </script>
     
 </body>
 </html>

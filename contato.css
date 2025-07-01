@@ -207,41 +207,111 @@ button[type="submit"]:hover {
   background-color: #e85d20;
 }
 
-/* Footer */
-footer {
-  background-color: #073B4C;
-  color: white;
-  padding: 2rem;
-  text-align: center;
+/* Estilos para integração ViaCEP */
+.input-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
 }
 
-.footer-logo {
-  height: 60px;
+.input-row .input.group {
+  flex: 1;
+}
+
+/* Feedback do CEP */
+.cep-feedback {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  min-height: 1rem;
+}
+
+.cep-feedback.success {
+  color: #28a745;
+}
+
+.cep-feedback.error {
+  color: #dc3545;
+}
+
+.cep-feedback.loading {
+  color: #007bff;
+}
+
+.cep-feedback.info {
+  color: #17a2b8;
+}
+
+/* Campos readonly com estilo diferenciado */
+input[readonly] {
+  background-color: #f8f9fa;
+  border-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+input[readonly]:focus {
+  background-color: #e9ecef;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  cursor: text;
+}
+
+/* Melhorias no formulário */
+.input.group {
   margin-bottom: 1rem;
 }
 
-#footer_link_content {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-.footer-list {
-  list-style: none;
-}
-
-.footer-link {
-  color: #FFD166;
-  text-decoration: none;
-}
-
-.footer-link:hover {
-  text-decoration: underline;
-}
-
-.list-title {
-  font-size: 1.2rem;
+.input.group label {
+  display: block;
   margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.input.group input,
+.input.group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input.group input:focus,
+.input.group textarea:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25);
+}
+
+/* Animação de carregamento */
+.cep-feedback.loading::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsividade para campos em linha */
+@media (max-width: 768px) {
+  .input-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .input-row .input.group {
+    margin-bottom: 1rem;
+  }
 }
